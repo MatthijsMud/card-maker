@@ -1,14 +1,19 @@
 import type { AppProps } from 'next/app'
-import { AnimateSharedLayout } from "framer-motion";
+import { Provider } from "react-redux"
 
-import "@fontsource/roboto/400.css";
-import "@fontsource/roboto/300.css";
-import "@fontsource/roboto/500.css";
-import "@fontsource/roboto/700.css";
+import { configureStore } from "$/app/configureStore";
+import { ErrorBoundary } from "$/utils/ErrorBoundary";
+import { Theme } from "$/theme/Theme";
+
+const store = configureStore();
 
 function MyApp({ Component, pageProps }: AppProps) {
-  return <AnimateSharedLayout>
-    <Component {...pageProps} />
-  </AnimateSharedLayout>
+  return <Provider store={store}>
+    <Theme>
+      <ErrorBoundary>
+        <Component {...pageProps} />
+      </ErrorBoundary>
+    </Theme>
+  </Provider>
 }
 export default MyApp
