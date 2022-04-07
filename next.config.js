@@ -8,6 +8,11 @@ module.exports = {
     config.module.rules.push({
       test: /\.svg$/,
       use: ["@svgr/webpack"]
+    });
+    config.module.rules.push({
+      type: "javascript/auto",
+      test: /\.mjs$/,
+      include: /node_modules/,
     })
     return config;
   }
