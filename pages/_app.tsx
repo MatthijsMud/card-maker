@@ -8,7 +8,7 @@ import { configureStore } from "$/app/configureStore";
 import { ErrorBoundary } from "$/utils/ErrorBoundary";
 import { Theme } from "$/theme/Theme";
 
-const store = configureStore();
+const { store } = configureStore();
 const clientCache = createEmotionCache({ key: "css" });
 
 declare namespace MyApp {
