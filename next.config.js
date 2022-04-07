@@ -1,19 +1,17 @@
-module.exports = {
-  i18n: {
-    locales: ["en"],
-    defaultLocale: "en",
 
-  },
-  webpack(config) {
-    config.module.rules.push({
-      test: /\.svg$/,
-      use: ["@svgr/webpack"]
-    });
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  reactStrictMode: true,
+  basePath: "/card-maker",
+  webpack (config) {
     config.module.rules.push({
       type: "javascript/auto",
       test: /\.mjs$/,
-      include: /node_modules/,
-    })
+      include: /node_modules/
+    });
+    config.resolve.extensions.push(".mjs");
     return config;
   }
-}
+};
+
+module.exports = nextConfig;
