@@ -21,8 +21,10 @@ const DisplacedContent = styled("div", {
   shouldForwardProp: (prop) => prop !== "open" 
 })<{ open?: boolean }>(({ theme, open }) => {
   return {
-
+    display: "flex",
+    flexDirection: "column",
     flexGrow: 1,
+    flexShrink: 1,
     padding: theme.spacing(2),
     transition: theme.transitions.create("margin", { 
       easing: theme.transitions.easing.sharp,
@@ -130,7 +132,7 @@ export const Workbench: FC<Workbench.Props> = memo((props) => {
   const { isOpen: persistent, open: openPersistent, close: closePersistent } = useSidebarState();
   const wide = useMediaQuery(theme => theme.breakpoints.up("md"));
 
-  return <Box sx={{ display: "flex" }}>
+  return <Box sx={{ display: "flex", minHeight: "100vh" }}>
     <DisplacedAppbar open={persistent}>
       <Toolbar>
         <AnimatePresence>
@@ -152,13 +154,14 @@ export const Workbench: FC<Workbench.Props> = memo((props) => {
     </DisplacedAppbar>
     <SidebarContainer open={persistent}>
       <SwipeableDrawer
-        variant={"temporary" }
+        variant="temporary"
         open={fleeting && !wide}
-        disableSwipeToOpen={!wide }
+        disableSwipeToOpen={wide }
         onOpen={openFleeting}
         onClose={closeFleeting}
         sx={{
           "& .MuiDrawer-paper": { width: "300px", boxSizing: "border-box" },
+          
         }}
       >
         <SidebarHeader>
