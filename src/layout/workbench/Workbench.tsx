@@ -11,6 +11,9 @@ import {
   styled,
   useMediaQuery,
 } from "@mui/material";
+import { 
+  useTheme,
+} from "@mui/material/styles";
 import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import { AnimatePresence, motion } from "framer-motion";
@@ -130,7 +133,8 @@ const useSidebarState = () => {
 export const Workbench: FC<Workbench.Props> = memo((props) => {
   const { isOpen: fleeting, open: openFleeting, close: closeFleeting } = useSidebarState();
   const { isOpen: persistent, open: openPersistent, close: closePersistent } = useSidebarState();
-  const wide = useMediaQuery(theme => theme.breakpoints.up("md"));
+  const theme = useTheme();
+  const wide = useMediaQuery(theme.breakpoints.up("md"));
 
   return <Box sx={{ display: "flex", minHeight: "100vh" }}>
     <DisplacedAppbar open={persistent}>
