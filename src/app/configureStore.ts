@@ -11,8 +11,11 @@ export const configureStore = () => {
     extensions: [getObservableExtension()]
   }, getCommonModule());
   
-  const persistor = persistStore(store);
-  store.addModule(getPersistModule(persistor));
+  // Storage solution is only available client side.
+  if (typeof window !== "undefined") {
+    const persistor = persistStore(store);
+    store.addModule(getPersistModule(persistor));
+  }
 
-  return { store, persistor };
+  return { store };
 }
