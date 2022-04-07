@@ -26,12 +26,12 @@ export class ErrorBoundary extends Component<ErrorBoundary.Props, ErrorBoundary.
     });
   }
 
-  public override componentDidCatch(error: unknown) 
+  public componentDidCatch(error: unknown) 
   {
     this.props.onError?.(error);
   }
 
-  public override render()
+  public render()
   {
     const { 
       error 
