@@ -9,7 +9,6 @@ import Head from "next/head";
 import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
 import { DynamicModuleLoader } from "redux-dynamic-modules";
 import { useSelector } from "react-redux";
-import { AnimateSharedLayout } from "framer-motion";
 
 import { getThemeModule } from "./themeModule";
 
@@ -34,10 +33,8 @@ const ThemeFromState: FC = (props) => {
 
 export const Theme: FC = (props) => {
   return <DynamicModuleLoader modules={[getThemeModule()]}>
-    <AnimateSharedLayout>
-      <ThemeFromState>
-        {props.children}
-      </ThemeFromState>
-    </AnimateSharedLayout>
+    <ThemeFromState>
+      {props.children}
+    </ThemeFromState>
   </DynamicModuleLoader>
 }

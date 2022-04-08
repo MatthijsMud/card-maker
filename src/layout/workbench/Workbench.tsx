@@ -16,7 +16,6 @@ import {
 } from "@mui/material/styles";
 import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import { AnimatePresence, motion } from "framer-motion";
 
 // Based on the documentation from MUI detailing how to create a persistent sidebar.
 // https://github.com/mui/material-ui/blob/fce921aec9e741aeb8e0dd5f9d754caff4072dfa/docs/data/material/components/drawers/PersistentDrawerLeft.tsx
@@ -139,20 +138,18 @@ export const Workbench: FC<Workbench.Props> = memo((props) => {
   return <Box sx={{ display: "flex", minHeight: "100vh" }}>
     <DisplacedAppbar open={persistent}>
       <Toolbar>
-        <AnimatePresence>
-          {(wide && persistent) || <motion.span  initial={{opacity: 0}} animate={{opacity:1}} exit={{opacity:0}}>
+          {(wide && persistent) || 
             <IconButton 
               edge="start" 
-              color="inherit" 
+              color="inherit"
+              aria-label="Open menu"
               onClick={wide ? openPersistent : openFleeting}
             >
               <MenuIcon />
-            </IconButton>
-          </motion.span>}
-        </AnimatePresence>
-        <motion.div layout>
+            </IconButton>}
+        <div>
           {props.title}
-        </motion.div>
+        </div>
         
       </Toolbar>
     </DisplacedAppbar>
