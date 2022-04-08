@@ -19,7 +19,7 @@ import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 
 // Based on the documentation from MUI detailing how to create a persistent sidebar.
 // https://github.com/mui/material-ui/blob/fce921aec9e741aeb8e0dd5f9d754caff4072dfa/docs/data/material/components/drawers/PersistentDrawerLeft.tsx
-const DisplacedContent = styled("div", { 
+const DisplacedContent = styled("main", { 
   shouldForwardProp: (prop) => prop !== "open" 
 })<{ open?: boolean }>(({ theme, open }) => {
   return {
@@ -165,11 +165,13 @@ export const Workbench: FC<Workbench.Props> = memo((props) => {
           
         }}
       >
-        <SidebarHeader>
-          <IconButton onClick={closeFleeting}><ChevronLeftIcon /></IconButton>
-        </SidebarHeader>
-        <Divider />
-        {props.sidebar}
+        <nav>
+          <SidebarHeader>
+            <IconButton onClick={closeFleeting} aria-label="Close menu"><ChevronLeftIcon /></IconButton>
+          </SidebarHeader>
+          <Divider />
+          {props.sidebar}
+        </nav>
       </SwipeableDrawer>
       <Drawer 
         variant="persistent"
@@ -178,11 +180,13 @@ export const Workbench: FC<Workbench.Props> = memo((props) => {
           "& .MuiDrawer-paper": { width: "300px", boxSizing: "border-box" },
         }}
       >
-        <SidebarHeader>
-          <IconButton onClick={closePersistent}><ChevronLeftIcon /></IconButton>
-        </SidebarHeader>
-        <Divider />
-        {props.sidebar}
+        <nav>
+          <SidebarHeader>
+            <IconButton onClick={closePersistent} aria-label="Close menu"><ChevronLeftIcon /></IconButton>
+          </SidebarHeader>
+          <Divider />
+          {props.sidebar}
+        </nav>
       </Drawer>
     </SidebarContainer>
 
